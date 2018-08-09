@@ -89,6 +89,4 @@ If you're not comfortable with React, you should read through the following reso
 * [Thinking in react](https://facebook.github.io/react/docs/thinking-in-react.html)
 * [9 things every react beginner should know](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know)
 * [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0)
-
-If you prefer videos, Dan Abramov (the creator of Redux) has a free video tutorial on the basics. You can find that [here](https://egghead.io/courses/getting-started-with-redux) and it runs a little over an hour.  
   
