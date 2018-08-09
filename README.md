@@ -14,7 +14,8 @@ Please read through this entire document and follow the steps to get set up. Ple
 
 Please follow the steps to get your machine set up **_before Friday Sept 7th_** to ensure that you're ready to code from the start.
 
-_A laptop is required to attend this workshop._  
+_A laptop is required to attend this workshop.  It's suggested that you also bring a pair of headphones for listening to 
+the screen reader that we'll be using frequently for testing._  
 
 ### Step 1
 Please ensure that your machine has the following core tools installed:
