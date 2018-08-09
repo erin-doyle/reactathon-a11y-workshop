@@ -17,7 +17,7 @@ Please follow the steps to get your machine set up **_before Friday Sept 7th_** 
 _A laptop is required to attend this workshop.  It's suggested that you also bring a pair of headphones for listening to 
 the screen reader that we'll be using frequently for testing._  
 
-### Step 1
+### Step 1: Install core tools
 Please ensure that your machine has the following core tools installed:
 
 * [Git](https://git-scm.com/downloads)
@@ -30,7 +30,7 @@ install multiple versions of Node.js and easily switch between them.
     * New to [npm](https://docs.npmjs.com/)?
 * An editor of your choice that you are comfortable using
 
-### Step 2
+### Step 2: Install testing tools
 When you've verified that your machine has the above requirements, install the following tools: 
   
 * aXe browser plugin:
@@ -39,8 +39,6 @@ When you've verified that your machine has the above requirements, install the f
 * tota11y browser plugin:
     * Chrome: https://chrome.google.com/webstore/detail/tota11y-plugin-from-khan/oedofneiplgibimfkccchnimiadcmhpe?hl=en
     * Firefox: https://addons.mozilla.org/en-US/firefox/addon/tota11y-accessibility-toolkit/
-* NoCoffee browser plugin:
-    * Chrome: https://chrome.google.com/webstore/detail/nocoffee/jjeeggmbnhckmgdhmgdckeigabjfbddl
 * High Contrast Mode:
     * Mac - High Contrast browser plugin:
         * Chrome: https://chrome.google.com/webstore/detail/high-contrast/djcfdncoelnlbldjfhinnjlhdjlikmph
@@ -53,10 +51,33 @@ When you've verified that your machine has the above requirements, install the f
         * Download: https://www.nvaccess.org/download/
         * See here for how to use and familiarize yourself with: https://www.nvaccess.org/files/nvda/documentation/userGuide.html?
 
-### Step 3: Bonus 
+### Step 3: Install optional tools (optionally... ;) ) 
 If you are using a Mac and would like to also be able to test Windows-only based tools such as the NVDA screen reader,
 High Contrast Mode, and IE or Edge browsers then you can do so by setting up a Windows Virtual Machine on your Mac.
 See here for step by step instructions: [How to Set Up a Windows VM](docs/VM_SETUP.md)
+
+Other optional tools:
+
+* NoCoffee browser plugin:
+    * Chrome: https://chrome.google.com/webstore/detail/nocoffee/jjeeggmbnhckmgdhmgdckeigabjfbddl
+* WCAG Luminosity Contrast Ratio Analyzer browser plugin:
+    * Chrome: https://chrome.google.com/webstore/detail/wcag-luminosity-contrast/lllpnmpooomecmbmijbmbikaacgfdagi/related?hl=en
+
+### Step 4: Configure
+Note that different browsers may have different keyboard control options available. Most modern browsers support pressing Tab 
+to move forward or Shift + Tab to move backwards through the focusable elements, but some browsers have their own idiosyncracies:
+
+Safari doesn't allow you to tab through links by default; to enable this, you need to: 
+1. open Safari's Preferences
+2. go to Advanced
+3. check the Press Tab to highlight each item on a webpage checkbox
+
+Firefox for the Mac doesn't do tabbing by default. To turn it on, you have to: 
+1. go to Preferences > Advanced > General
+2. then uncheck "Always use the cursor keys to navigate within pages"
+3. Next, you have to open your Mac's System Preferences app
+4. then go to Keyboard > Shortcuts
+5. then select the All Controls radio button
 
 
 ## 2. Clone and run the test application
@@ -80,6 +101,10 @@ Here are some short videos that may be helpful to watch that we probably won't h
 * [Screen Reader Basics: VoiceOver](https://youtu.be/5R-6WvAihms)
 * [Screen Reader Basics: NVDA](https://youtu.be/Jao3s_CwdRU)
 
+
+### Git basics
+For the workshop you'll need to be able to check out specific tag revisions using git.  Please familiarize yourself with how to do this.
+* [Git Basics Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging) See section "Checking out Tags".
 
 ### ES6
 If you're not familiar with ES6, you'll want to start here. Read one or both.  
