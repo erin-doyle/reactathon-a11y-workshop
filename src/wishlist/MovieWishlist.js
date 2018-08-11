@@ -76,7 +76,7 @@ class MovieWishlist extends Component {
                     </li>
                 </ul>
 
-                {wishlist.length
+                {Object.keys(wishlist).length
                     ? <div>
                         <WishList
                             movieList={wishlist}
