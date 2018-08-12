@@ -22,5 +22,8 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:jsx-a11y/recommended"
-  ]
+  ],
+  "rules": {
+    "jsx-a11y/label-has-for": "off"
+  }
 }
