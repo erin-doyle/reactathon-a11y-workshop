@@ -61,8 +61,9 @@ See here for step by step instructions: [How to Set Up a Windows VM](docs/VM_SET
 
 ## 2. Clone and run the test application
 1. Clone this project
-2. Run by entering: `npm run start`
-3. Open `http://localhost:3000` in a browser
+2. Install dependencies by entering `npm install`
+3. Run by entering: `npm run start`
+4. Open `http://localhost:3000` in a browser
 
 _**NOTE:** the HEAD revision of the master branch contains the fully completed workshop source.  We will be checking out
 various revision tags to step through the evolution of improving this code with the first being completely inaccessible and 
