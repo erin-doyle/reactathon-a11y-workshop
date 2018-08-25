@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { navigate } from '@reach/router';
 
 import movies from '../movies';
 import Header from '../primitives/Header';
@@ -10,14 +11,12 @@ import getBrowseActions from './getBrowseActions';
 
 
 const MovieBrowser = ({
-    history,
-    match,
+    genre,
     wishlist,
     addToWishlist,
     removeFromWishlist
 }) => {
-    const selectedGenre = match.params.genre;
-    const goToWishlist = () => history.push('/wishlist');
+    const goToWishlist = () => navigate('/wishlist');
 
     // NOTE: name value should match :genre path in linkTo URL
     // since we're using match.params.genre to identify the activeTab
@@ -29,10 +28,10 @@ const MovieBrowser = ({
         { name: "fantasy", linkTo: "/browse/fantasy", title: "Fantasy" }
     ];
     const movieActions = getBrowseActions(addToWishlist, removeFromWishlist);
-    const moviesInGenre = movies[selectedGenre];
+    const moviesInGenre = movies[genre];
 
     return (
-        <div>
+        <Fragment>
             <Header
                 title="Browse Movies"
                 buttonOptions={{
@@ -46,9 +45,9 @@ const MovieBrowser = ({
                 <TabList ariaLabel="Select a Movie Genre to Browse" tabList={tabList} />
 
                 <div
-                    id={`${selectedGenre}-panel`}
+                    id={`${genre}-panel`}
                     role="tabpanel"
-                    aria-labelledby={`${selectedGenre}-tab`}
+                    aria-labelledby={`${genre}-tab`}
                     tabIndex="0"
                 >
                     <BrowseList
@@ -58,16 +57,16 @@ const MovieBrowser = ({
                     />
                 </div>
             </main>
-        </div>
+        </Fragment>
     );
 };
 
 MovieBrowser.propTypes = {
-    history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
     wishlist: PropTypes.object.isRequired,
     addToWishlist: PropTypes.func.isRequired,
-    removeFromWishlist: PropTypes.func.isRequired
+    removeFromWishlist: PropTypes.func.isRequired,
+    // supplied by <Router>
+    genre: PropTypes.string
 };
 
 

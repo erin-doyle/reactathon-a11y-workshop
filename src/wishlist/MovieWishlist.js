@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, navigate } from '@reach/router';
 
 import Header from '../primitives/Header';
 import TabList from '../primitives/TabList';
@@ -48,16 +48,14 @@ class MovieWishlist extends Component {
 
     render() {
         const {
-            history,
-            match,
+            status,
             wishlist,
             setAsWatched,
             setAsUnwatched,
             removeMovie
         } = this.props;
         const { showEditor, movieIdInEdit } = this.state;
-        const selectedStatus = match.params.status;
-        const goToBrowse = () => history.push('/browse');
+        const goToBrowse = () => navigate('/browse');
 
         // NOTE: name value should match :status path in linkTo URL
         // since we're using match.params.status to identify the activeTab
@@ -69,7 +67,7 @@ class MovieWishlist extends Component {
         const movieInEditing = movieIdInEdit ? wishlist[movieIdInEdit] : {};
 
         return (
-            <div>
+            <Fragment>
                 <Header
                     title="Movie Wishlist"
                     buttonOptions={{
@@ -87,14 +85,14 @@ class MovieWishlist extends Component {
                             <TabList ariaLabel="Select a WishList by Status" tabList={tabList} />
 
                             <div
-                                id={`${selectedStatus}-panel`}
+                                id={`${status}-panel`}
                                 role="tabpanel"
-                                aria-labelledby={`${selectedStatus}-tab`}
+                                aria-labelledby={`${status}-tab`}
                                 tabIndex="0"
                             >
                                 <WishList
                                     movieList={wishlist}
-                                    watched={selectedStatus === 'watched'}
+                                    watched={status === 'watched'}
                                     movieActions={movieActions}
                                 />
                             </div>
@@ -114,19 +112,19 @@ class MovieWishlist extends Component {
                         </div>
                     }
                 </main>
-            </div>
+            </Fragment>
         );
     }
 }
 
 MovieWishlist.propTypes = {
-    history: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
     wishlist: PropTypes.object.isRequired,
     updateMovie: PropTypes.func.isRequired,
     setAsWatched: PropTypes.func.isRequired,
     setAsUnwatched: PropTypes.func.isRequired,
-    removeMovie: PropTypes.func.isRequired
+    removeMovie: PropTypes.func.isRequired,
+    // supplied by <Router>
+    status: PropTypes.string
 };
 
 

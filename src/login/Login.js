@@ -1,12 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { navigate } from '@reach/router';
 
 import FormInput from '../primitives/FormInput';
 import Header from '../primitives/Header';
 
 
-const Login = ({ history }) => {
-    const goToWishlist = () => history.push('/wishlist');
+const Login = () => {
+    const goToWishlist = () => navigate('/wishlist');
 
     return (
         <div className="login row align-items-center">
@@ -44,10 +44,6 @@ const Login = ({ history }) => {
             </div>
         </div>
     );
-};
-
-Login.propTypes = {
-    history: PropTypes.object.isRequired
 };
 
 

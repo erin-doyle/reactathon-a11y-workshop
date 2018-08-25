@@ -1,17 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { navigate } from '@reach/router';
 
 
 class TabList extends Component {
     constructor(props) {
         super(props);
 
-        const { tabList, match } = this.props;
+        const { tabList, uri } = this.props;
 
         this.state = {
             // Default the selectedTab to the one matching the current URL (which matches the tabpanel content)
-            selectedTab: tabList.find((tab) => tab.linkTo === match.url) || tabList[0]
+            selectedTab: tabList.find((tab) => tab.linkTo === uri) || tabList[0]
         };
 
         this.selectedTabRef = null;
@@ -37,12 +37,10 @@ class TabList extends Component {
     }
 
     selectTab (tab) {
-        const { history } = this.props;
-
         this.setState({selectedTab: tab});
 
         // Navigate to the selected tab's URL in order to display it in the tabpanel
-        history.push(tab.linkTo);
+        navigate(tab.linkTo);
     }
 
     gotoFirstTab () {
@@ -182,11 +180,9 @@ TabList.propTypes = {
         linkTo: PropTypes.string,
         title: PropTypes.string
     })).isRequired,
-    // supplied by withRouter
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired
+    // supplied by <Router>
+    uri: PropTypes.string
 };
 
 
-export default withRouter(TabList);
+export default TabList;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
+import { Redirect, Router } from '@reach/router';
 
 import Login from './login/Login';
 import MovieWishlist from './wishlist/MovieWishlist';
@@ -92,35 +92,29 @@ class App extends Component {
 
         return (
             <div className="container-fluid">
-                <Switch>
+                <Router>
                     {/* Login */}
-                    <Redirect exact from='/' to='/login' />
-                    <Route path="/login" component={Login} />
+                    <Redirect from='/' to='/login' noThrow />
+                    <Login path="/login" />
 
                     {/* Wish List - default to Unwatched */}
-                    <Redirect exact from='/wishlist' to='/wishlist/unwatched' />
-                    <Route path="/wishlist/:status" render={(props) => (
-                        <MovieWishlist
-                            {...props}
-                            wishlist={wishlist}
-                            updateMovie={this.updateMovie}
-                            setAsWatched={this.setMovieAsWatched}
-                            setAsUnwatched={this.setMovieAsUnwatched}
-                            removeMovie={this.removeMovieFromWishlist}
-                        />
-                    )}/>
+                    <Redirect from='/wishlist' to='/wishlist/unwatched' noThrow />
+                    <MovieWishlist path="/wishlist/:status"
+                        wishlist={wishlist}
+                        updateMovie={this.updateMovie}
+                        setAsWatched={this.setMovieAsWatched}
+                        setAsUnwatched={this.setMovieAsUnwatched}
+                        removeMovie={this.removeMovieFromWishlist}
+                    />
 
                     {/* Browse - default to Action genre */}
-                    <Redirect exact from='/browse' to='/browse/action' />
-                    <Route path="/browse/:genre" render={(props) => (
-                        <MovieBrowser
-                            {...props}
-                            wishlist={wishlist}
-                            addToWishlist={this.addMovieToWishlist}
-                            removeFromWishlist={this.removeMovieFromWishlist}
-                        />
-                    )} />
-                </Switch>
+                    <Redirect from='/browse' to='/browse/action' noThrow />
+                    <MovieBrowser path="/browse/:genre"
+                        wishlist={wishlist}
+                        addToWishlist={this.addMovieToWishlist}
+                        removeFromWishlist={this.removeMovieFromWishlist}
+                    />
+                </Router>
             </div>
         );
     }
