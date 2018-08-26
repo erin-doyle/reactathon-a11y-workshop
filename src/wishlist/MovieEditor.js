@@ -53,7 +53,7 @@ class MovieEditor extends Component {
                     labelledby: "modal-title"
                 }}
                 shouldFocusAfterRender={true}
-                shouldCloseOnOverlayClick={true}
+                shouldReturnFocusAfterClose={false} // override default behavior which returns focus to wrong element
             >
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
@@ -66,7 +66,7 @@ class MovieEditor extends Component {
                         <div className="modal-body">
                             <div className="form-group">
                                 <label htmlFor="notes">Notes:
-                                    <textarea id="notes" className="form-control" value={notes} onChange={this.handleChangeNotes} />
+                                    <textarea id="notes" className="form-control" value={notes} onBlur={this.handleChangeNotes} />
                                 </label>
                             </div>
                         </div>
