@@ -31,8 +31,14 @@ class TabList extends Component {
         this.focusTabList();
     }
 
-    componentDidUpdate() {
-        this.focusTabList();
+    componentDidUpdate(prevProps) {
+        const { match } = this.props;
+
+        // Only when the selected tab has changed do we need to focus that TabList
+        // NOTE: this prevents extra focus jumping when other things change (i.e. Movie watched status)
+        if (prevProps.match.url !== match.url) {
+            this.focusTabList();
+        }
     }
 
     setTabListRef(element) {
