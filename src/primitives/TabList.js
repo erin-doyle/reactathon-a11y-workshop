@@ -15,10 +15,9 @@ class TabList extends Component {
         };
 
         this.tabList = null;
-        this.selectedTabRef = null;
 
         this.setTabListRef = this.setTabListRef.bind(this);
-        this.setSelectedTabRef = this.setSelectedTabRef.bind(this);
+        this.focusTabList = this.focusTabList.bind(this);
         this.selectTab = this.selectTab.bind(this);
         this.gotoFirstTab = this.gotoFirstTab.bind(this);
         this.gotoLastTab = this.gotoLastTab.bind(this);
@@ -29,25 +28,23 @@ class TabList extends Component {
     }
 
     componentDidMount() {
-        const { doFocus } = this.props;
-
-        if (doFocus && this.tabList) {
-            this.tabList.focus();
-        }
+        this.focusTabList();
     }
 
     componentDidUpdate() {
-        if (this.selectedTabRef) {
-            this.selectedTabRef.focus();
-        }
+        this.focusTabList();
     }
 
     setTabListRef(element) {
         this.tabList = element;
     }
 
-    setSelectedTabRef(element) {
-        this.selectedTabRef = element;
+    focusTabList() {
+        const { doFocus } = this.props;
+
+        if (doFocus && this.tabList) {
+            this.tabList.focus();
+        }
     }
 
     selectTab (tab) {
@@ -71,7 +68,7 @@ class TabList extends Component {
 
     gotoPreviousTab (currentTab) {
         const { tabList } = this.props;
-        const index = tabList.findIndex((tab) => tab === currentTab);
+        const index = tabList.findIndex((tab) => tab.name === currentTab.name);
 
         // If the current tab is already the first tab, circle round to the last tab
         if (index === 0) {
@@ -84,7 +81,7 @@ class TabList extends Component {
 
     gotoNextTab (currentTab) {
         const { tabList } = this.props;
-        const index = tabList.findIndex((tab) => tab === currentTab);
+        const index = tabList.findIndex((tab) => tab.name === currentTab.name);
 
         // If the current tab is already the last tab, circle round to the first tab
         if (index === tabList.length - 1) {
@@ -166,12 +163,9 @@ class TabList extends Component {
                     role="tab"
                     aria-selected={isSelectedTab}
                     aria-controls={isSelectedTab ? `${name}-panel` : null}
-                    tabIndex={isSelectedTab ? 0 : -1}
+                    tabIndex={-1}
 
                     onClick={e => this.handleClick(e, tabItem)}
-                    onKeyDown={e => this.handleKeydown(e, tabItem)}
-
-                    ref={ref => { if (isSelectedTab) this.setSelectedTabRef(ref); }}
                 >
                     {title}
                 </button>
@@ -185,7 +179,11 @@ class TabList extends Component {
                     className="nav nav-tabs nav-justified"
                     role="tablist"
                     aria-describedby="tablist-title"
+                    aria-activedescendant={`${selectedTab.name}-tab`}
                     tabIndex="0"
+
+                    onKeyDown={e => this.handleKeydown(e, selectedTab)}
+
                     ref={this.setTabListRef}
                 >
                     {tabItems}
